@@ -1,12 +1,13 @@
 package com.example.school.config;
 
-import com.example.school.entity.Role;
-import com.example.school.entity.User;
-import com.example.school.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import com.example.school.entity.Role;
+import com.example.school.entity.User;
+import com.example.school.repository.UserRepository;
 
 @Component
 @Profile("docker")
