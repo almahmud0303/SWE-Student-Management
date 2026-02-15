@@ -21,8 +21,13 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Fix Maven wrapper for Linux (line endings + execute)
+        run: |
+          sed -i 's/\r$//' mvnw
+          chmod +x mvnw
+
       - name: Build and run tests
-        run: chmod +x mvnw && ./mvnw -B verify
+        run: ./mvnw -B verify
         continue-on-error: false
 
   # Optional: build Docker image (uncomment if you want to push to a registry)
