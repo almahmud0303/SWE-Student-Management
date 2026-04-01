@@ -126,6 +126,18 @@ public class ClassService {
                 .collect(Collectors.toSet());
     }
 
+    /** For student: list of classes they are enrolled in (ordered by class name). */
+    @Transactional(readOnly = true)
+    public List<SchoolClass> findEnrolledClassesForStudent(SchoolUserDetails currentUser) {
+        if (currentUser.isTeacher()) return List.of();
+        return userRepository.findById(currentUser.getUserId())
+                .map(enrollmentRepository::findByStudentOrderBySchoolClass_Name)
+                .orElse(List.of())
+                .stream()
+                .map(Enrollment::getSchoolClass)
+                .collect(Collectors.toList());
+    }
+
     /** For teacher: count of enrollments per class (by class id). */
     public Map<Long, Long> enrollmentCountByClassId(List<SchoolClass> classes) {
         return classes.stream()
