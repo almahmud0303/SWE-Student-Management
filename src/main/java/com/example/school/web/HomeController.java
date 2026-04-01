@@ -34,6 +34,7 @@ public class HomeController {
                         Map.entry("deleteClass", "DELETE /api/classes/{id} (teacher only)"),
                         Map.entry("enroll", "POST /api/classes/{id}/enroll (student only)"),
                         Map.entry("unenroll", "DELETE /api/classes/{id}/enroll (student only)"),
+                        Map.entry("dashboard", "GET /api/dashboard (teacher: me + my classes; student: me + enrolled classes)"),
                         Map.entry("health", "GET /actuator/health")
                 )
         ));
